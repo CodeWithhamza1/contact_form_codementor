@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form - Submitted Details</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <h2>Contact Form - Submitted Details</h2>
+    <p><strong>Name:</strong> <span id="name"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+    <p><strong>Issue:</strong> <span id="issue"></span></p>
+    <p><strong>Comments:</strong> <span id="comment"></span></p>
+
+    <button onclick="editForm()">Edit</button>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Populate the details on the second page
+    document.getElementById('name').innerText = getParameterByName('name');
+    document.getElementById('email').innerText = getParameterByName('email');
+    document.getElementById('issue').innerText = getParameterByName('issue');
+    document.getElementById('comment').innerText = getParameterByName('comment');
+
+    // Function to get URL parameter by name
+    function getParameterByName(name) {
+      var url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+
+    // Function to edit the form and redirect to the first page
+    function editForm() {
+      var name = getParameterByName('name');
+      var email = getParameterByName('email');
+      var issue = getParameterByName('issue');
+      var comment = getParameterByName('comment');
+
+      // Redirect to the first page with the pre-filled form data
+      window.location.href = 'index.html?name=' + encodeURIComponent(name) +
+                                          '&email=' + encodeURIComponent(email) +
+                                          '&issue=' + encodeURIComponent(issue) +
+                                          '&comment=' + encodeURIComponent(comment);
+    }
+  </script>
+</body>
+</html>
